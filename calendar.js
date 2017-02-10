@@ -1,9 +1,8 @@
 
-'use strict';
 
-var React = require('react-native');
+import React, { PropTypes, Component } from 'react';
 
-var {
+import {
   AppRegistry,
   StyleSheet,
   Text,
@@ -11,27 +10,22 @@ var {
   PixelRatio,
   ScrollView,
   TouchableHighlight,
-} = React;
+} from 'react-native';
 
-var Calendar = React.createClass({
-  getInitialState: function(){
-    //开始时间
-    var startTime = this.props.startTime || new Date();
-    var holiday = this.props.holiday || {};
-    var check = this.props.check || {};
-    var headerStyle = this.props.headerStyle || {};
-    //显示月份的个数
-    var num = this.props.num || 3;
-    return {
-      startTime: startTime,
-      num: num,
-      holiday: holiday,
-      check: check,
-      headerStyle: headerStyle
+export default class Calendar extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      startTime: this.props.startTime || new Date(),
+      num: this.props.num || 3,
+      holiday: this.props.holiday || {},
+      check: this.props.check || {},
+      headerStyle: this.props.headerStyle || {},
     };
-  },
+  
+  }
 
-  render: function() {
+  render() {
     var date = this.state.startTime;
     var num = this.state.num;
     var holiday = this.state.holiday;
@@ -150,7 +144,7 @@ var Calendar = React.createClass({
         </View>
     );
   }
-});
+};
 
 var styles = StyleSheet.create({
   container: {
